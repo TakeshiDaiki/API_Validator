@@ -203,25 +203,25 @@ def test_name_normalization():
 
 
 def main():
-    """Ejecuta todas las pruebas."""
+    """Run all tests."""
     print(f"\n{BLUE}{'='*60}{RESET}")
-    print(f"{BLUE}PRUEBAS DE LA API VALIDADORA{RESET}")
+    print(f"{BLUE}PERSONAL DATA VALIDATOR TESTS{RESET}")
     print(f"{BLUE}{'='*60}{RESET}")
-    
-    # Esperar a que la API esté disponible
+
+    # Wait for the API to be available
     import time
-    max_intentos = 5
-    for intento in range(max_intentos):
+    max_attempts = 5
+    for attempt in range(max_attempts):
         try:
             requests.get(f"{BASE_URL}/health", timeout=1)
-            print(f"{GREEN}✓ API disponible en {BASE_URL}{RESET}")
+            print(f"{GREEN}✓ API available at {BASE_URL}{RESET}")
             break
         except requests.exceptions.ConnectionError:
-            if intento < max_intentos - 1:
-                print(f"{YELLOW}Esperando a que la API esté disponible... ({intento + 1}/{max_intentos}){RESET}")
+            if attempt < max_attempts - 1:
+                print(f"{YELLOW}Waiting for API to be available... ({attempt + 1}/{max_attempts}){RESET}")
                 time.sleep(1)
             else:
-                print(f"{RED}✗ No se pudo conectar a la API{RESET}")
+                print(f"{RED}✗ Could not connect to the API{RESET}")
                 return
     
     # Tests list
@@ -245,29 +245,29 @@ def main():
             resultado = test()
             resultados.append((nombre, resultado))
         except Exception as e:
-            print(f"{RED}✗ Error en prueba {nombre}: {str(e)}{RESET}")
+            print(f"{RED}✗ Error in test {nombre}: {str(e)}{RESET}")
             resultados.append((nombre, False))
     
     # Resumen de resultados
     print(f"\n{BLUE}{'='*60}{RESET}")
-    print(f"{BLUE}RESUMEN DE RESULTADOS{RESET}")
+    print(f"{BLUE}TEST RESULTS SUMMARY{RESET}")
     print(f"{BLUE}{'='*60}{RESET}")
-    
-    exitosas = sum(1 for _, resultado in resultados if resultado)
-    totales = len(resultados)
-    
+
+    passed = sum(1 for _, resultado in resultados if resultado)
+    total = len(resultados)
+
     for nombre, resultado in resultados:
-        simbolo = f"{GREEN}✓{RESET}" if resultado else f"{RED}✗{RESET}"
-        print(f"{simbolo} {nombre}")
-    
+        symbol = f"{GREEN}✓{RESET}" if resultado else f"{RED}✗{RESET}"
+        print(f"{symbol} {nombre}")
+
     print(f"\n{BLUE}{'='*60}{RESET}")
-    print(f"Pruebas exitosas: {GREEN}{exitosas}/{totales}{RESET}")
+    print(f"Passed tests: {GREEN}{passed}/{total}{RESET}")
     print(f"{BLUE}{'='*60}{RESET}")
-    
-    if exitosas == totales:
-        print(f"\n{GREEN}¡Todas las pruebas pasaron correctamente!{RESET}")
+
+    if passed == total:
+        print(f"\n{GREEN}All tests passed successfully!{RESET}")
     else:
-        print(f"\n{YELLOW}Algunas pruebas fallaron. Revisa los errores arriba.{RESET}")
+        print(f"\n{YELLOW}Some tests failed. Check the errors above.{RESET}")
 
 
 if __name__ == "__main__":
