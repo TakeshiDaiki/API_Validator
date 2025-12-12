@@ -1,3 +1,82 @@
+# API Validadora
+
+FastAPI REST API for validating personal data using Pydantic.
+
+Features
+- Validate and normalize `nombre` (first name) and `apellido` (last name)
+- Validate `email` using a robust validator
+- Optional `telefono` (digits only, min 7) and `edad` (0-120)
+- Automatic name capitalization
+- Swagger UI and ReDoc documentation
+- Logging and global error handling
+
+Quick Start
+1. Create and activate a virtual environment (recommended):
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+2. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the app locally:
+
+```bash
+uvicorn main:app --host localhost --port 8000
+```
+
+4. Open Swagger UI: http://localhost:8000/docs
+
+Endpoints
+- `GET /` — API information and metadata
+- `GET /health` — Health check
+- `POST /validar` — Validate personal data (JSON body)
+
+Example Request
+
+```bash
+curl -X POST "http://localhost:8000/validar" \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"juan","apellido":"perez","email":"juan@example.com","telefono":"1234567","edad":30}'
+```
+
+Example Response
+
+```json
+{
+  "valido": true,
+  "mensaje": "Datos validados correctamente",
+  "datos": {
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan@example.com",
+    "telefono": "1234567",
+    "edad": 30
+  },
+  "timestamp": "2025-12-11T22:56:11.327998"
+}
+```
+
+Testing
+
+Run the automated test suite:
+
+```bash
+python test_api.py
+```
+
+License
+
+This project is licensed under the MIT License — see the `LICENSE` file for details.
+
+Contributing
+
+Contributions are welcome. Open an issue or a pull request on GitHub.
 # API Validadora de Datos Personales
 
 API REST funcional construida con **FastAPI** y **Python 3.12** para validar datos personales de usuarios con validaciones avanzadas, manejo de errores global, y documentación automática mediante Swagger UI.
