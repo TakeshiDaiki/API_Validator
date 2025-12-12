@@ -1,5 +1,9 @@
 # Personal Data Validator API
 
+![CI](https://github.com/Pantuflito01/API_Validadora-/actions/workflows/ci.yml/badge.svg?branch=main)
+![Release](https://img.shields.io/github/v/tag/Pantuflito01/API_Validadora-.svg)
+![License](https://img.shields.io/github/license/Pantuflito01/API_Validadora-.svg)
+
 FastAPI REST API for validating personal data using Pydantic.
 
 Features
