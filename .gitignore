@@ -45,12 +45,12 @@ logs/
 .coverage
 htmlcov/
 
-# Archivos temporales
+# Temporary files
 *.tmp
 *.temp
 tmp/
 
-# Configuración local
+# Local configuration
 .env
 .env.local
 *.env

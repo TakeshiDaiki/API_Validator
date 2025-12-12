@@ -483,33 +483,33 @@ Personal Data Validator API project - December 2025
 
 ---
 
-## 📞 Soporte
+## 📞 Support
 
-Para problemas o preguntas, revisa:
-1. La documentación en Swagger: http://localhost:8000/docs
-2. Este README
-3. Los comentarios en el código
+If you have issues or questions, check:
+1. Interactive docs: http://localhost:8000/docs
+2. This README
+3. Comments in the source code
 
 ---
 
 ## ✨ Implementation Checklist
 
-- ✅ API REST funcional con FastAPI
- - ✅ Endpoints POST /validate, GET /, GET /health
-- ✅ Validación con Pydantic
-- ✅ Normalización de nombres
-- ✅ Validación de email con regex
-- ✅ Validación de teléfono (numérico, 7+ dígitos)
-- ✅ Validación de edad (0-120)
- - ✅ Required fields: first_name, last_name, email
- - ✅ Optional fields: phone, age
-- ✅ Manejo global de errores
-- ✅ Logging por cada petición
-- ✅ Swagger UI automático
-- ✅ Código modular y limpio
-- ✅ requirements.txt completo
-- ✅ Script de pruebas automatizadas (11/11 ✅)
-- ✅ Servir en localhost:8000 con uvicorn
-- ✅ 100% funcional y lista para producción
+- ✅ Functional REST API with FastAPI
+  - ✅ Endpoints: POST /validate, GET /, GET /health
+- ✅ Validation using Pydantic
+- ✅ Name normalization
+- ✅ Email validation
+- ✅ Phone validation (numeric, 7+ digits)
+- ✅ Age validation (0-120)
+  - ✅ Required fields: first_name, last_name, email
+  - ✅ Optional fields: phone, age
+- ✅ Global error handling
+- ✅ Request logging
+- ✅ Auto-generated Swagger UI
+- ✅ Modular, clean code
+- ✅ Complete requirements.txt
+- ✅ Automated test script (11/11 ✅)
+- ✅ Runs on localhost:8000 with uvicorn
+- ✅ Production-ready
 
 The API is ready to use! 🎉

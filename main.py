@@ -19,15 +19,14 @@ from pydantic import ValidationError
 
 from app.models import UsuarioValidation
 
-# ==================== CONFIGURACIÓN DE LOGGING ====================
+# ==================== LOGGING CONFIGURATION ====================
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-
-# ==================== MANEJADOR GLOBAL DE ERRORES ====================
+# ==================== GLOBAL ERROR HANDLER ====================
 def format_validation_errors(errors: list) -> Dict[str, str]:
     """Format Pydantic validation errors into a friendly dict."""
     error_dict = {}
@@ -42,8 +41,6 @@ def format_validation_errors(errors: list) -> Dict[str, str]:
         error_dict[str(field)] = message
 
     return error_dict
-
-
 # ==================== LIFESPAN MANAGER ====================
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -53,7 +50,7 @@ async def lifespan(app: FastAPI):
     logger.info("Personal Data Validator API stopped")
 
 
-# ==================== INICIALIZACIÓN DE FASTAPI ====================
+# ==================== FASTAPI INITIALIZATION ====================
 app = FastAPI(
     title="Personal Data Validator API",
     description="REST API to validate and normalize personal data using Pydantic",
@@ -66,7 +63,7 @@ app = FastAPI(
 )
 
 
-# ==================== RUTAS ====================
+# ==================== ROUTES ====================
 
 @app.get("/", tags=["Info"])
 async def root() -> Dict[str, Any]:
@@ -83,10 +80,10 @@ async def root() -> Dict[str, Any]:
 @app.get("/health", tags=["Health"])
 async def health_check() -> Dict[str, str]:
     """
-    Endpoint para verificar el estado de la API.
-    
+    Health check endpoint.
+
     Returns:
-        Estado de la API
+        API health status
     """
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
@@ -105,13 +102,13 @@ async def validate_user(usuario: UsuarioValidation) -> Dict[str, Any]:
         - age (int, between 0 and 120)
     """
     try:
-        # Log de la petición
+        # Log the request
         logger.info(
             f"POST /validate - Email: {usuario.email}, "
             f"First: {usuario.first_name}, Last: {usuario.last_name}"
         )
-        
-        # Preparar respuesta exitosa
+
+        # Prepare successful response
         response = {
             "valid": True,
             "message": "Data validated successfully",
