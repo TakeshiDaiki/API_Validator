@@ -1,9 +1,8 @@
 """
 Pydantic models for user data validation.
 """
-from pydantic import BaseModel, EmailStr, field_validator, ValidationInfo
+from pydantic import BaseModel, EmailStr, field_validator
 from typing import Optional
-import re
 
 
 class UsuarioValidation(BaseModel):

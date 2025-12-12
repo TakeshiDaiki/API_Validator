@@ -6,7 +6,6 @@ Performs example requests against the API endpoints.
 
 import requests
 import json
-from typing import Dict, Any
 
 BASE_URL = "http://localhost:8000"
 
@@ -24,10 +23,11 @@ def print_result(title: str, response: requests.Response):
     print(f"{BLUE}{title}{RESET}")
     print(f"{BLUE}{'='*60}{RESET}")
     print(f"Status Code: {response.status_code}")
-    print(f"Response:")
+    print("Response:")
     try:
         print(json.dumps(response.json(), indent=2, ensure_ascii=False))
-    except:
+    except Exception as e:
+        print(str(e))
         print(response.text)
 
 
